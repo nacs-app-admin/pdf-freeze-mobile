@@ -2,5 +2,5 @@
 <header><button id="open">PDFを開く</button><input id="file" type="file" accept="application/pdf" hidden><button id="prev">◀</button><span id="page">0/0</span><button id="next">▶</button><button id="minus">－</button><span id="zoom">100%</span><button id="plus">＋</button><button id="menu">固定</button></header>
 <div id="panel" hidden><div class="panel-title">固定方法</div><button data-mode="top">上部固定</button><button data-mode="left">左固定</button><button data-mode="both">上部＋左固定</button><button id="clear">固定解除</button></div>
 <main id="stage"><div id="scroll"><div id="pageWrap"><canvas id="pdf"></canvas><div id="capture" hidden></div><div id="guide"><i></i><b></b><em></em></div></div></div><canvas id="top" class="pane"></canvas><canvas id="left" class="pane"></canvas><canvas id="corner" class="pane"></canvas><canvas id="body" class="pane"></canvas><div id="empty">「PDFを開く」から端末内のPDFを選択してください。<small>PDFはGitHubへ送信されず、この端末内だけで処理されます。</small></div></main>
-<div id="confirmBar" hidden><button id="confirmFix">この位置で固定</button></div>
+<div id="touchHint" hidden>赤い丸が固定位置です</div><div id="confirmBar" hidden><button id="confirmFix">この位置で固定</button></div>
 <script type="module" src="app.js"></script></body></html>
