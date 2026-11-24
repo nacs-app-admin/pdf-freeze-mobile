@@ -1,11 +1,3 @@
-# PDF固定ビューワ モバイル版
+# PDF固定ビューワ モバイル版 v1.3
 
-GitHub Pagesで動作するiPhone・iPad共通版です。
-
-## セキュリティ
-- PDFはGitHubへアップロードしません。
-- 選択したPDFはブラウザー内のメモリだけで処理します。
-- リポジトリへPDFファイルを追加しないでください。
-
-## GitHub Pages
-Settings > Pages > Build and deployment > Deploy from a branch > main / root > Save
+固定位置指定中は、PDF上を再度タップまたはドラッグすると赤いガイド線を何度でも調整できます。位置が決まったら「この位置で固定」を押します。
