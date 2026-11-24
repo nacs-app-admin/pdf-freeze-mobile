@@ -1,0 +1,7 @@
+Third-party software used by this application:
+
+1. PDF.js (Mozilla Foundation), Apache License 2.0.
+2. @hyzyla/pdfium, MIT License.
+3. PDFium WebAssembly bundled by @hyzyla/pdfium. PDFium is developed by the PDFium Authors and incorporates Chromium third-party components. See https://pdfium.googlesource.com/pdfium/ and the upstream package notices for details.
+
+The viewer's original application code is not offered under an additional public license. Third-party components remain governed by their respective licenses.

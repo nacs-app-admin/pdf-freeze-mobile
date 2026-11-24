@@ -1,5 +1,7 @@
-# PDF固定ビューワ モバイル版 v1.6
+# PDF固定ビューワ v1.7
 
-- 日本語CIDフォントを埋め込んでいない業務PDFに対応するため、PDF.js CMapを同梱
-- `cMapUrl`、`cMapPacked`、`useSystemFonts`を設定
-- e-DocGenerator等が出力する古い日本語PDFの表示互換性を改善
+- 通常PDFはPDF.jsで表示し、検索ボタンを表示します。
+- PDF.jsでほぼ白紙になるPDFはPDFium画像表示へ自動切替します。
+- 画像表示中は検索ボタンを自動的に隠します。
+- PDFデータは外部サーバーへ送信せず、ブラウザー内で処理します。
+- GitHub Pagesへは `dist` フォルダーの中身だけをアップロードしてください。
