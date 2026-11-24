@@ -21,3 +21,23 @@ function showGuide(e){if(!mode)return;e.preventDefault();e.stopPropagation();con
 function confirm(){if(!mode||!pending)return;const g=geom();freeze={mode,x:mode==='top'?0:pending.x,y:mode==='left'?0:pending.y,ox:mode==='top'?0:g.sx,oy:mode==='left'?0:g.sy,ax:mode==='top'?0:g.ax,ay:mode==='left'?0:g.ay};mode=null;pending=null;capture.hidden=true;$('#guide').style.display='none';$('#confirmBar').hidden=true;$('#touchHint').hidden=true;document.body.classList.remove('selecting');save();apply()}
 async function zoom(d){if(!pdf)return;const old=scale,l=scroll.scrollLeft,t=scroll.scrollTop,f=freeze?{mode:freeze.mode,x:freeze.x/pageW,y:freeze.y/pageH,ox:freeze.ox/pageW,oy:freeze.oy/pageH,ax:freeze.ax,ay:freeze.ay}:null;scale=Math.max(.5,Math.min(4,scale+d));await render();if(f){freeze={mode:f.mode,x:f.x*pageW,y:f.y*pageH,ox:f.ox*pageW,oy:f.oy*pageH,ax:f.ax,ay:f.ay};save();apply()}scroll.scrollLeft=l*(scale/old);scroll.scrollTop=t*(scale/old);schedule()}
 $('#open').onclick=()=>file.click();file.onchange=()=>openPdf(file.files[0]);$('#menu').onclick=()=>$('#panel').hidden=!$('#panel').hidden;document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>choose(b.dataset.mode));$('#confirmFix').onclick=confirm;capture.addEventListener('touchstart',showGuide,{passive:false});capture.addEventListener('touchmove',showGuide,{passive:false});capture.addEventListener('mousedown',showGuide);capture.addEventListener('mousemove',e=>{if(e.buttons)showGuide(e)});$('#clear').onclick=()=>{freeze=null;mode=null;pending=null;capture.hidden=true;$('#guide').style.display='none';$('#confirmBar').hidden=true;$('#touchHint').hidden=true;document.body.classList.remove('selecting');localStorage.removeItem(key());canvas.style.visibility='visible';apply();$('#panel').hidden=true};$('#prev').onclick=async()=>{if(pdf&&page>1){page--;scroll.scrollTo(0,0);await render()}};$('#next').onclick=async()=>{if(pdf&&page<pdf.numPages){page++;scroll.scrollTo(0,0);await render()}};$('#minus').onclick=()=>zoom(-.25);$('#plus').onclick=()=>zoom(.25);scroll.addEventListener('scroll',schedule,{passive:true});addEventListener('resize',apply);if('serviceWorker'in navigator)navigator.serviceWorker.register('./service-worker.js');
+
+
+function syncVisualViewport(){
+  const vv=window.visualViewport;
+  const left=vv?vv.offsetLeft:0,top=vv?vv.offsetTop:0,width=vv?vv.width:window.innerWidth;
+  document.documentElement.style.setProperty('--vv-left',left+'px');
+  document.documentElement.style.setProperty('--vv-top',top+'px');
+  document.documentElement.style.setProperty('--vv-width',width+'px');
+  apply();
+}
+if(window.visualViewport){
+  window.visualViewport.addEventListener('resize',syncVisualViewport);
+  window.visualViewport.addEventListener('scroll',syncVisualViewport);
+}
+window.addEventListener('orientationchange',()=>setTimeout(syncVisualViewport,250));
+document.addEventListener('gesturestart',e=>e.preventDefault(),{passive:false});
+document.addEventListener('gesturechange',e=>e.preventDefault(),{passive:false});
+document.addEventListener('gestureend',e=>e.preventDefault(),{passive:false});
+document.addEventListener('touchmove',e=>{if(e.touches&&e.touches.length>1)e.preventDefault()},{passive:false});
+syncVisualViewport();
