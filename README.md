@@ -1,6 +1,5 @@
-# PDF固定ビューワ モバイル版 v1.5
+# PDF固定ビューワ モバイル版 v1.6
 
-- iPhone SafariのVisual Viewportへメニューバーを追従
-- ブラウザー全体のピンチ拡大を停止し、PDFだけを＋／－ボタンで拡大
-- 横向き時も42pxのメニューを画面上端へ固定
-- 指先より48px上のガイド表示を維持
+- 日本語CIDフォントを埋め込んでいない業務PDFに対応するため、PDF.js CMapを同梱
+- `cMapUrl`、`cMapPacked`、`useSystemFonts`を設定
+- e-DocGenerator等が出力する古い日本語PDFの表示互換性を改善
